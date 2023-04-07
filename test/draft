@@ -1,0 +1,16 @@
+let newimp = await proxyContract.upgradeToAndCall(v2.address, "0xfe4b84df0000000000000000000000000000000000000000000000000000000000000022")
+    await newimp.wait()
+    console.log(await proxyContract.getImp()); 
+    
+  
+    const tx1 = await sender.sendTransaction(txData1)
+    await tx1.wait()
+    let x1 = await proxyContract.x()
+    console.log("x:", x1.toString())
+
+
+
+    const V2 = await ethers.getContractFactory("V2")
+    v2 = await V2.deploy()
+    await v2.deployed()
+    console.log("address V2", v2.address);
