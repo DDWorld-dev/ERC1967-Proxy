@@ -6,15 +6,15 @@ import "./utils/Initializable.sol";
 import "./UUPSUpgradeable.sol";
 
 contract V2 is Initializable, UUPSUpgradeable{
-    uint public x;
+    uint public number;
     address owner;
-    uint public y;
+    uint public newNumber;
     modifier onlyOwner(){
         require(owner == msg.sender, "error");
         _;
     }
-    function initialize(uint _y) public payable reinitializer(2){
-        y = _y;
+    function initialize(uint _newNumber) public payable reinitializer(2){
+        newNumber = _newNumber;
         owner = msg.sender; 
     }
     function _authorizeUpgrade(address newImplementation)
