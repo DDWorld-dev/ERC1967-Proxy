@@ -29,8 +29,18 @@ describe("V", function() {
   }
     const tx = await sender.sendTransaction(txData)
     await tx.wait()
-    let x = await proxyContract.x1()
+    let x = await proxyContract.x()
     console.log("x:", x.toString())
-    
+    const V2 = await ethers.getContractFactory("V2")
+    v2 = await V2.deploy()
+    await v2.deployed()
+    proxyContract.newImplementation(v2.address, "0x043df9260000000000000000000000000000000000000000000000000000000000000006")
+    const txData1 = {
+      to: proxyContract.address,
+      data: "0xb3bcfa82",
+  }
+    const tx1 = await sender.sendTransaction(txData)
+    await tx1.wait()
+    console.log("x:", x.toString())
   });
 });
